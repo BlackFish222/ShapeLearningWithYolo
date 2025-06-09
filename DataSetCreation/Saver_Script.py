@@ -57,7 +57,7 @@ if __name__ == "__main__":
 
     save_all_images(
         dataloader,
-        output_dir="dataset_per_image_metadata",
+        output_dir="datasets/dataset_per_image_metadata",
         pattern1_only=False,
         max_images=600,
         extra_metadata={
