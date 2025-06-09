@@ -1,12 +1,12 @@
 from typing import Literal
 
-from .LTPlusDataset import LTDataModule
-from .rectangledataset import RectangleDataModule
-from .squaredataset import SquaresDataModule
+from LTPlusDataset import LTDataModule
+from rectangledataset import RectangleDataModule
+from squaredataset import SquaresDataModule
 
 # Standard parameterizations of datasets used in experiments
-from ..colors import RedXORBlue, NotRedXORBlue, RandomGrey, Grey, RandomChoiceColor
-from ..textures import HorizontalGrating, VerticalGrating, RandomGrating
+from DataSetCreation.datasets.colors import RedXORBlue, NotRedXORBlue, RandomGrey, Grey, RandomChoiceColor
+from DataSetCreation.datasets.textures import HorizontalGrating, VerticalGrating, RandomGrating
 
 def make_dataset(shape: Literal["rectangles", "LvT"],
                  pattern: Literal["color", "stripes"],

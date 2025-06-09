@@ -1,12 +1,11 @@
-import torch
 from torch.utils.data import Dataset, random_split, DataLoader
 from pytorch_lightning import LightningDataModule
 from typing import Any, List, Type
 # local imports
-from ..colors import Color, Grey
-from ..textures import Texture
-from ..stimuli import Stimulus
-from ..old_shapes import LShape, TShape, PlusShape, Pixel
+from colors import Color, Grey
+from textures import Texture
+from stimuli import Stimulus
+from old_shapes import LShape, TShape, PlusShape, Pixel
 
 class LTPlusDataset(Dataset):
     """

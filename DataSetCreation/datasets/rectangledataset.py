@@ -1,12 +1,12 @@
 import torch
-from torch.utils.data import Dataset, random_split, DataLoader
+from torch.utils.data import Dataset, DataLoader
 from typing import Any, List, Type
 from pytorch_lightning import LightningDataModule
 # local imports
-from ..colors import Color, RandomRed, RandomBlue, Grey
-from ..old_shapes import Pixel, Orientation, Rectangle
-from ..textures import Texture
-from ..stimuli import Stimulus
+from colors import Color, RandomRed, RandomBlue, Grey
+from old_shapes import Pixel, Orientation, Rectangle
+from textures import Texture
+from stimuli import Stimulus
 
 class RectangleDataset(Dataset):
     """

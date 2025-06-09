@@ -1,7 +1,7 @@
 import os
 import json
 import torchvision.utils as vutils
-from shapelearningtheory.datasets import make_dataset
+from __init__  import make_dataset
 
 
 def load_full_dataset(shape="rectangles", pattern="color", size="small", variant="standard",

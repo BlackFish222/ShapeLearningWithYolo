@@ -5,9 +5,9 @@ from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms
 from pytorch_lightning import LightningDataModule
 
-from ..shapes import *
-from ..color_set import ColorSet, RandomColorSet
-from ..colors import Color, RandomGrey
+
+from color_set import ColorSet, RandomColorSet
+from colors import Color, RandomGrey
 
 default_shape_classes = [
     HorizontalRectangle,

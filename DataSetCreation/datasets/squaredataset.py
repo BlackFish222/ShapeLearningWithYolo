@@ -1,12 +1,11 @@
-import torch
-from torch.utils.data import Dataset, random_split, DataLoader
+from torch.utils.data import Dataset, DataLoader
 from typing import List, Any, Type
 from pytorch_lightning import LightningDataModule
 # local imports:
-from ..old_shapes import Pixel, Square
-from ..colors import Color, RandomRed, RandomBlue, Grey
-from ..stimuli import Stimulus
-from ..textures import Texture
+from old_shapes import Pixel, Square
+from colors import Color, RandomRed, RandomBlue, Grey
+from stimuli import Stimulus
+from textures import Texture
 
 class SquareDataset(Dataset):
     """Dataset for classifying squares according to color

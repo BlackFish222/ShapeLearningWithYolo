@@ -1,11 +1,10 @@
-import torch
-from torch.utils.data import Dataset, random_split, DataLoader
+from torch.utils.data import Dataset, DataLoader
 from typing import List, Any, Type
 from pytorch_lightning import LightningDataModule
 # local imports:
-from ..old_shapes import Pixel, Orientation, Line
-from ..colors import Color, White, RandomRed, RandomBlue, Grey
-from ..stimuli import Stimulus
+from old_shapes import Pixel, Orientation, Line
+from colors import Color, White, RandomRed, RandomBlue, Grey
+from stimuli import Stimulus
 
 class LineDataset(Dataset):
     """Dataset for classifying horizontal and vertical lines. Horizontal and
