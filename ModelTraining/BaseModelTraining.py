@@ -1,11 +1,15 @@
 from ultralytics import YOLO
 
-model = YOLO("yolov8s-cls.pt")
+model = YOLO("ModelTraining/yolov8s-cls.pt")
 
 #Train
-model.train(data='[insert data location here]', epochs = 20, imgs=600)
+#model.train(data='ShapeLearning.v2i.folder', epochs = 20, imgsz=600)
 
-model.val(data='[insert data location here]')
+#model.val(data='ShapeLearning.v2i.folder')
 
-results = model.predict(source='[insert data location here]')
-print(results)
+#results = model.predict(source='ShapeLearning.v2i.folder')
+#print(results)
+
+
+#results = model.predict(source="path/to/new_images/", save=True)
+results = model.predict(source="ModelTraining/dataset_per_image_metadata", save=True)

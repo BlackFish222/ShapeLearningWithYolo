@@ -4,7 +4,7 @@ import torchvision.utils as vutils
 from __init__  import make_dataset
 
 
-def load_full_dataset(shape="rectangles", pattern="color", size="small", variant="standard",
+def load_full_dataset(shape="rectangles", pattern="color", size="small", variant="coloronly",
                       batchsize=8, num_workers=2, stage="fit"):
     dm = make_dataset(shape, pattern, size, variant, batchsize, num_workers)
     dm.setup(stage)
@@ -13,7 +13,11 @@ def load_full_dataset(shape="rectangles", pattern="color", size="small", variant
 
 def save_all_images(dataloader, output_dir="saved_dataset", pattern1_only=False, pattern1_label=0,
                     extra_metadata=None, max_images=600):
-    os.makedirs(output_dir, exist_ok=True)
+    images_dir = os.path.join(output_dir, "images")
+    metadata_dir = os.path.join(output_dir, "metadata")
+    os.makedirs(images_dir, exist_ok=True)
+    os.makedirs(metadata_dir, exist_ok=True)
+
     index = 0
     for images, labels in dataloader:
         if pattern1_only:
@@ -27,8 +31,8 @@ def save_all_images(dataloader, output_dir="saved_dataset", pattern1_only=False,
                 return
 
             base_filename = f"img_{index:05d}_label{label.item()}"
-            image_path = os.path.join(output_dir, base_filename + ".png")
-            meta_path = os.path.join(output_dir, base_filename + ".json")
+            image_path = os.path.join(images_dir, base_filename + ".png")
+            meta_path = os.path.join(metadata_dir, base_filename + ".json")
 
             vutils.save_image(img, image_path, normalize=True)
 
@@ -51,18 +55,18 @@ if __name__ == "__main__":
         shape="rectangles",
         pattern="color",
         size="small",
-        variant="standard",
+        variant="coloronly",
         batchsize=8
     )
 
     save_all_images(
         dataloader,
-        output_dir="datasets/dataset_per_image_metadata",
+        output_dir="../ModelTraining/dataset_inference",
         pattern1_only=False,
         max_images=600,
         extra_metadata={
             "shape": "rectangles",
             "pattern": "color",
-            "variant": "standard"
+            "variant": "coloronly"
         }
     )
