@@ -3,9 +3,9 @@ from ultralytics import YOLO
 model = YOLO("ModelTraining/yolov8s-cls.pt")
 
 #Train
-#model.train(data='ShapeLearning.v2i.folder', epochs = 20, imgsz=600)
+model.train(data='ShapeLearning.v2i.folder', epochs = 20, imgsz=600)
 
-#model.val(data='ShapeLearning.v2i.folder')
+model.val(data='ShapeLearning.v2i.folder')
 
 #results = model.predict(source='ShapeLearning.v2i.folder')
 #print(results)

@@ -19,6 +19,8 @@ def split_and_save_classification_dataset(dataloader, output_dir="saved_dataset"
 
     index = 0
     for images, labels in dataloader:
+        print(f"[DEBUG] Batch shape: {images.shape}, Labels: {labels}")
+
         if pattern1_only:
             mask = labels == pattern1_label
             images = images[mask]
@@ -92,18 +94,18 @@ if __name__ == "__main__":
         shape="rectangles",
         pattern="color",
         size="small",
-        variant="coloronly",
+        variant="standard",
         batchsize=8
     )
 
     split_and_save_classification_dataset(
         dataloader,
-        output_dir="../ModelTraining/dataset_inference_split",
+        output_dir="CollectedData/TestingData",
         pattern1_only=False,
         max_images=600,
         extra_metadata={
             "shape": "rectangles",
             "pattern": "color",
-            "variant": "coloronly"
+            "variant": "standard"
         }
     )
