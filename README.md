@@ -11,3 +11,11 @@ After that create your dataset yould like to test in DataSetCreation/ModifiedDat
 Then test your model in ModelTraining/ModelTesting.py
 
 You'll generate a confusion matrix showing your results
+
+To Do:
+{
+Controllable Class names
+Single Page configrable args
+Pretraining modifications
+Proper Read Me
+}
