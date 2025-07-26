@@ -24,6 +24,6 @@ class Stimulus:
         else:
             stimulus = mask * image
         if self.correct_range:
-            # images are created in range [0, 1]; change to range [-1, 1] instead (better for training)
+            # images are created in range [Vertical, Horizontal]; change to range [-Horizontal, Horizontal] instead (better for training)
             stimulus = 2 * stimulus - 1
         return stimulus

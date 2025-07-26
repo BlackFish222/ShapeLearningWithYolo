@@ -1,15 +1,18 @@
 from ultralytics import YOLO
 
-model = YOLO("ModelTraining/yolov8s-cls.pt")
+# Make sure this file exists and is valid
+model = YOLO("yolov8s-cls.pt")
 
-#Train
-model.train(data='ShapeLearning.v2i.folder', epochs = 20, imgsz=600)
+#This will need to be changed later this should become the path to the dataset your using as default
+model.train(
+    data='ShapeLearning.v2i.folder',  # Should be either a valid .yaml config or dataset dir
+    epochs=20,
+    imgsz=600
+)
 
-model.val(data='ShapeLearning.v2i.folder')
 
-#results = model.predict(source='ShapeLearning.v2i.folder')
-#print(results)
-
-
-#results = model.predict(source="path/to/new_images/", save=True)
-results = model.predict(source="ModelTraining/dataset_per_image_metadata", save=True)
+# Run predictions on new data (inference)
+results = model.predict(
+   source="DataSetCreation/TestingDataSet/TestingData",  # folder with test images
+   save=True  # saves results (annotated images) to runs/predict/
+)

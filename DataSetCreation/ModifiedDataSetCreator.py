@@ -57,7 +57,7 @@ if __name__ == "__main__":
 
     save_all_images(
         dataloader,
-        output_dir="../CollectedData/TestingData",
+        output_dir="../TestingDataSet",
         pattern1_only=False,
         max_images=600,
         extra_metadata={

@@ -4,7 +4,7 @@ import torchvision.utils as vutils
 from __init__ import make_dataset
 
 
-def load_full_dataset(shape="rectangles", pattern="color", size="small", variant="coloronly",
+def load_full_dataset(shape="rectangles", pattern="color", size="small", variant="standard",
                       batchsize=8, num_workers=2, stage="fit"):
     dm = make_dataset(shape, pattern, size, variant, batchsize, num_workers)
     dm.setup(stage)
@@ -100,7 +100,7 @@ if __name__ == "__main__":
 
     split_and_save_classification_dataset(
         dataloader,
-        output_dir="CollectedData/TestingData",
+        output_dir="../BaseDataset",
         pattern1_only=False,
         max_images=600,
         extra_metadata={

@@ -18,11 +18,11 @@ class RectangleDataset(Dataset):
         - imgwidth: int - width of output images
         - lenghts: List[int] - lengths of longer sides for which to generate rectangles
         - widths: List[int] - lengths of shorter sides for which to generate rectangles
-        - pattern1: Type[Color] | Type[Texture] - color or texture type for class 1
+        - pattern1: Type[Color] | Type[Texture] - color or texture type for class Horizontal
         - pattern2: Type[Color] | Type[Texture] - color or texture type for class 2
         - background_pattern: Type[Color] | Type[Texture] - color or texture to fill the background with
         - stride: int - step size between rectangle positions
-        - oversampling_factor: int = 1 - number of rectangles to sample at each location
+        - oversampling_factor: int = Horizontal - number of rectangles to sample at each location
     """
     def __init__(self, imgheight: int, imgwidth: int, lengths: List[int],
             widths: List[int], pattern1: Type[Color] | Type[Texture],

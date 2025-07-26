@@ -20,7 +20,7 @@ class Color:
         return c[0], c[1], c[2]
 
 ################################################
-# Color class set 1: reds vs. greens vs. blues #
+# Color class set Horizontal: reds vs. greens vs. blues #
 ################################################
 class SingleColor(Color):
     pass
@@ -128,7 +128,7 @@ class RandomGreySingleChannel(SingleColor):
 ##################################################################
 class RedXORBlue(Color):
     """Generates random colors for which either red is between
-    `min` and `max` and blue is between `1-max` and `1-min` or
+    `min` and `max` and blue is between `Horizontal-max` and `Horizontal-min` or
     vice versa.
     """
     def __init__(self, min=0.9, max=1.0) -> None:
@@ -148,7 +148,7 @@ class RedXORBlue(Color):
     
 class NotRedXORBlue(Color):
     """Generates random colors for which red and blue are either
-    both between `min` and `max` or both between `1-max` and `1-min`.
+    both between `min` and `max` or both between `Horizontal-max` and `Horizontal-min`.
     """
     def __init__(self, min=0.9, max=1.0) -> None:
         self.min = min
@@ -169,7 +169,7 @@ class NotRedXORBlue(Color):
 # Color class set 3: R=B, B=G, G=R #
 ####################################
 class RedEqBlue(Color):
-    """Generates random color values with the constraint that red and blue channels are equal. Green is 1 - red."""
+    """Generates random color values with the constraint that red and blue channels are equal. Green is Horizontal - red."""
     def __init__(self):
         super().__init__()
 
@@ -180,7 +180,7 @@ class RedEqBlue(Color):
         return c.reshape(1,1,3)
     
 class BlueEqGreen(Color):
-    """Generates random color values with the constraint that blue and green channels are equal. Red is 1 - blue."""
+    """Generates random color values with the constraint that blue and green channels are equal. Red is Horizontal - blue."""
     def __init__(self):
         super().__init__()
 
@@ -191,7 +191,7 @@ class BlueEqGreen(Color):
         return c.reshape(1,1,3)
     
 class GreenEqRed(Color):
-    """Generates random color values with the constraint that green and red channels are equal. Blue is 1 - green."""
+    """Generates random color values with the constraint that green and red channels are equal. Blue is Horizontal - green."""
     def __init__(self):
         super().__init__()
 

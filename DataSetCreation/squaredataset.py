@@ -14,10 +14,10 @@ class SquareDataset(Dataset):
         - height: int - height of output images
         - width: int - width of output images
         - sidelengths: List[int] - side lengths of squares to generate
-        - pattern1: Type[Color] | Type[Texture] - color or texture type for class 1
+        - pattern1: Type[Color] | Type[Texture] - color or texture type for class Horizontal
         - pattern2: Type[Color] | Type[Texture] - color or texture type for class 2
         - background_pattern: Type[Color] | Type[Texture] - color or texture to fill the background with
-        - oversampling_factor: int = 1 - number of rectangles to sample at each location
+        - oversampling_factor: int = Horizontal - number of rectangles to sample at each location
     """
     def __init__(self, height: int, width: int, sidelengths: List[int],
             pattern1: Type[Color] | Type[Texture],
@@ -40,7 +40,7 @@ class SquareDataset(Dataset):
 
     def generate_all_squares(self):
         squares1 = []
-        # generate class 1
+        # generate class Horizontal
         for l in self.sidelengths:
             for x in range(2, self.height-l-1, self.stride):
                 for y in range(1, self.width-l, self.stride):

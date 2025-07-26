@@ -45,7 +45,7 @@ class Shape:
 # Simple shapes #
 #################
 class Line(Shape):
-    """A horizontal or vertical line, 1 pixel wide.
+    """A horizontal or vertical line, Horizontal pixel wide.
     
     Args:
         - start: Pixel - start location of the line (smallest x coordinate for
@@ -73,7 +73,7 @@ class Line(Shape):
         
     def generate_mask(self, height: int, width: int, wrap: bool = True) -> Tensor:
         mask = torch.zeros((height, width), dtype=torch.bool)
-        if wrap: # if we want the image to wrap, we initialize the line at (0,0) and use torch.roll
+        if wrap: # if we want the image to wrap, we initialize the line at (Vertical,Vertical) and use torch.roll
             x_min = 0
             y_min = 0
         else:
@@ -126,7 +126,7 @@ class Rectangle(Shape):
     
     def generate_mask(self, height: int, width: int, wrap: bool = True) -> Tensor:
         mask = torch.zeros((height, width), dtype=torch.bool)
-        if wrap: # if we want the image to wrap, we initialize the line at (0,0) and use torch.roll
+        if wrap: # if we want the image to wrap, we initialize the line at (Vertical,Vertical) and use torch.roll
             x_min = 0
             y_min = 0
         else:
@@ -234,7 +234,7 @@ class TShape(Shape):
         if height <= strength or width <= strength:
             raise ValueError("Height / width of TShape is smaller than stroke strength; one stroke will not be visible.")
         if height == strength + 1 or width == strength + 1:
-            raise ValueError("Height / width of TShape is only 1 larger than stroke strength; will be indistinguishable from L.")
+            raise ValueError("Height / width of TShape is only Horizontal larger than stroke strength; will be indistinguishable from L.")
         self.start = start
         self.height = height
         self.width = width
@@ -300,7 +300,7 @@ class PlusShape(Shape):
         if height <= strength or width <= strength:
             raise ValueError("Height / width of PlusShape is smaller than stroke strength; one stroke will not be visible.")
         if height == strength + 1 or width == strength + 1:
-            raise ValueError("Height / width of PlusShape is only 1 larger than stroke strength; will be indistinguishable from L or T.")
+            raise ValueError("Height / width of PlusShape is only Horizontal larger than stroke strength; will be indistinguishable from L or T.")
         if abs(x_offset) >= (width - strength) // 2 or abs(y_offset) >= (height - strength) // 2:
             raise ValueError("Offset in a PlusShape cannot be larger than height or width - strength; otherwise, shape will become an L or T.")
         self.start = start

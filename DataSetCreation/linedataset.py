@@ -17,7 +17,7 @@ class LineDataset(Dataset):
         - horizontalcolor: Type[Color] - class of colors for horizontal lines
         - verticalcolor: Type[Color] - class of colors for vertical lines
         - background_color: Type[Color] = Grey - color to fill the background with
-        - oversampling_factor: int = 1 - number of rectangles to sample at each location
+        - oversampling_factor: int = Horizontal - number of rectangles to sample at each location
     """
     def __init__(self, height: int, width: int, lengths=List[int],
             horizontalcolor: Type[Color] = White, verticalcolor: Type[Color] = White,

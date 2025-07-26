@@ -4,19 +4,17 @@ import matplotlib.pyplot as plt
 from PIL import Image
 import os
 
-# === Load YOLO classification model ===
-model = YOLO("ModelTraining/yolov8s-cls.pt")
+# Trained Model
+model = YOLO("../ModelTraining/runs/classify/train2/weights/best.pt")
 
-# === Define base directory containing class folders ===
-base_dir = "../CollectedData/TestingData"
+# Images You Would Like to Test
+base_dir = "../TestingDataSet"
 
-# === Get sorted class names (excluding hidden/system files) ===
 class_names = sorted([
     d for d in os.listdir(base_dir)
     if os.path.isdir(os.path.join(base_dir, d)) and not d.startswith(".")
 ])
 
-# === Prepare ground truth and prediction lists ===
 true_labels = []
 pred_labels = []
 
@@ -39,7 +37,7 @@ print(f"True label distribution: {dict((i, true_labels.count(i)) for i in set(tr
 print(f"Predicted label distribution: {dict((i, pred_labels.count(i)) for i in set(pred_labels))}")
 
 
-# === Compute and display confusion matrix ===
+# Confusion Matrix
 cm = confusion_matrix(true_labels, pred_labels, labels=range(len(class_names)))
 
 disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=class_names)
