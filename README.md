@@ -18,4 +18,9 @@ Controllable Class names
 Single Page configrable args
 Pretraining modifications
 Proper Read Me
+
+Pond images only have bouys could be a problem
+Train pool model than pond model
+then test both
+
 }
