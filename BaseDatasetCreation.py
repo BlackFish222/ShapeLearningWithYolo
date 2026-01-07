@@ -6,19 +6,19 @@ from DataSetCreation.make_dataset import make_dataset
 shape = "rectangles"
 pattern = "color"
 size = "small"
-base_data_set_size = 50
+base_data_set_size = 600
 
 def load_full_dataset(shape= shape, pattern= pattern, size= size, variant="standard",
-                      batchsize=8, num_workers=2, stage="fit"):
+    batchsize=8, num_workers=2, stage="fit"):
     dm = make_dataset(shape, pattern, size, variant, batchsize, num_workers)
     dm.setup(stage)
     return dm.train_dataloader()
 
 
 def split_and_save_classification_dataset(dataloader, output_dir="BaseDataSet",
-                                          pattern1_only=False, pattern1_label=0,
-                                          extra_metadata=None, max_images= base_data_set_size,
-                                          split_ratios=(0.7, 0.2, 0.1)):
+    pattern1_only=False, pattern1_label=0,
+    extra_metadata=None, max_images= base_data_set_size,
+    split_ratios=(0.7, 0.2, 0.1)):
     image_list = []
 
     index = 0
@@ -106,7 +106,7 @@ if __name__ == "__main__":
         dataloader,
         output_dir="BaseDataSet",
         pattern1_only=False,
-        max_images=10,
+        max_images=base_data_set_size,
         extra_metadata={
             "shape": shape,
             "pattern": pattern,

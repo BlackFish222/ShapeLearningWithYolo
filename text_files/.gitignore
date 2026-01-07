@@ -1,6 +1,6 @@
-BaseDataSet
-ModelTraining/datasets
-DataSetCreation/__pycache__
+ModelTraining/datasets/
+DataSetCreation/__pycache__/
 DataSetCreation
-TestingDataSet
-BaseDataSet
+TestingDataSet/
+BaseDataSet/
+__pycache__/

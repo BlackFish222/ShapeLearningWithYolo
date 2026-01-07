@@ -6,7 +6,7 @@ shape = "rectangles"
 pattern = "color"
 size = "small"
 variant = "shapeonly"
-mod_data_set_size = 50
+mod_data_set_size = 600
 
 def load_full_dataset(shape= shape, pattern= pattern, size= size, variant= variant,
     batchsize=8, num_workers=2, stage="fit"):
