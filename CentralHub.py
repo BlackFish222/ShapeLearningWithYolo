@@ -1,9 +1,9 @@
-# CentralHub.py
 import argparse
 import os
 import sys
-from typing import Tuple, List, Dict, Any
+from typing import Tuple, List
 import torch
+
 from BaseDatasetCreation import load_full_dataset as load_base_dataset, split_and_save_classification_dataset
 from ModifiedDataSetCreator import load_full_dataset as load_test_dataset, save_all_images
 from BaseModelTraining import train_and_predict
@@ -18,13 +18,13 @@ class ShapeLearningPipeline:
 
     def create_base_dataset(
             self,
-            output_dir: str = "../BaseDataset",
+            output_dir: str = "BaseDataSet",
             shape: str = "rectangles",
             pattern: str = "color",
             size: str = "small",
             variant: str = "standard",
             batchsize: int = 8,
-            max_images: int = 600,
+            max_images: int = 50,
             split_ratios: Tuple[float, float, float] = (0.7, 0.2, 0.1)
     ):
         """Create and split the base dataset"""
@@ -60,13 +60,13 @@ class ShapeLearningPipeline:
 
     def create_testing_dataset(
             self,
-            output_dir: str = "../TestingDataSet",
+            output_dir: str = "TestingDataSet",
             shape: str = "rectangles",
             pattern: str = "color",
             size: str = "small",
             variant: str = "shapeonly",
             batchsize: int = 8,
-            max_images: int = 600
+            max_images: int = 50
     ):
         """Create testing dataset"""
         print(f"\n=== Creating Testing Dataset ===")
@@ -99,10 +99,10 @@ class ShapeLearningPipeline:
 
     def train_model(
             self,
-            data_path: str = "ShapeLearning.v2i.folder",
+            data_path: str = "BaseDataSet",
             model_type: str = "yolov8s-cls.pt",
             epochs: int = 20,
-            imgsz: int = 600,
+            imgsz: int = 10,
             test_data_path: str = None
     ):
         """Train the YOLO model"""
@@ -188,9 +188,9 @@ def main():
 
     # Model testing arguments
     parser.add_argument("--test_model", action="store_true", help="Test the model")
-    parser.add_argument("--model_path", default="../ModelTraining/runs/classify/train2/weights/best.pt",
+    parser.add_argument("--model_path", default="../ModelTraining/runs/classify/train/weights/best.pt",
                         help="Path to trained model")
-    parser.add_argument("--test_dir", default="../TestingDataSet", help="Directory with test images")
+    parser.add_argument("--test_dir", default="TestingDataSet", help="Directory with test images")
 
     # Model upload arguments
     parser.add_argument("--upload_model", action="store_true", help="Upload model to Roboflow")

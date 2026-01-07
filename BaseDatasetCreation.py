@@ -1,19 +1,23 @@
 import os
 import random
 import torchvision.utils as vutils
-from __init__ import make_dataset
+from DataSetCreation.make_dataset import make_dataset
 
+shape = "rectangles"
+pattern = "color"
+size = "small"
+base_data_set_size = 50
 
-def load_full_dataset(shape="rectangles", pattern="color", size="small", variant="standard",
+def load_full_dataset(shape= shape, pattern= pattern, size= size, variant="standard",
                       batchsize=8, num_workers=2, stage="fit"):
     dm = make_dataset(shape, pattern, size, variant, batchsize, num_workers)
     dm.setup(stage)
     return dm.train_dataloader()
 
 
-def split_and_save_classification_dataset(dataloader, output_dir="saved_dataset",
+def split_and_save_classification_dataset(dataloader, output_dir="BaseDataSet",
                                           pattern1_only=False, pattern1_label=0,
-                                          extra_metadata=None, max_images=600,
+                                          extra_metadata=None, max_images= base_data_set_size,
                                           split_ratios=(0.7, 0.2, 0.1)):
     image_list = []
 
@@ -91,21 +95,21 @@ def create_data_yaml(output_dir):
 
 if __name__ == "__main__":
     dataloader = load_full_dataset(
-        shape="rectangles",
-        pattern="color",
-        size="small",
+        shape= shape,
+        pattern= pattern,
+        size= size,
         variant="standard",
-        batchsize=8
+        batchsize= 8
     )
 
     split_and_save_classification_dataset(
         dataloader,
-        output_dir="../BaseDataset",
+        output_dir="BaseDataSet",
         pattern1_only=False,
-        max_images=600,
+        max_images=10,
         extra_metadata={
-            "shape": "rectangles",
-            "pattern": "color",
+            "shape": shape,
+            "pattern": pattern,
             "variant": "standard"
         }
     )

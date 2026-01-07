@@ -1,6 +1,6 @@
-from colors import Color
-from old_shapes import Shape
-from textures import Texture
+from .colors import Color
+from .old_shapes import Shape
+from .textures import Texture
 from typing import Optional
 
 class Stimulus:
