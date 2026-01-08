@@ -5,7 +5,7 @@ workspace = rf.workspace("")
 
 workspace.deploy_model(
   model_type="yolov8",
-  model_path="",
+  model_path="runs/classify/train/weights/best.pt",
   project_ids=[""],
   model_name=""
 )

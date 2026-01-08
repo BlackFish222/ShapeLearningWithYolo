@@ -4,3 +4,4 @@ DataSetCreation
 TestingDataSet/
 BaseDataSet/
 __pycache__/
+.DS_Store

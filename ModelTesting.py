@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 from PIL import Image
 import os
 
-from BaseDatasetCreation import base_data_set_size
-
+from BaseDatasetCreation import base_data_set_size, shape, pattern
+from ModifiedDataSetCreator import variant
 
 def canon(name: str) -> str:
     name = name.strip().lower()
@@ -141,7 +141,8 @@ def confusion_matrix_eval(model_path: str, test_dir: str, save_fig: str = "confu
 
     disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=class_names)
     disp.plot(xticks_rotation=45, cmap="Blues", values_format="d")
-    plt.title("YOLOv8 Classification Confusion Matrix")
+    plt.suptitle("YOLOv8 Classification Confusion Matrix")
+    plt.title(f"Shape = {shape} | Pattern = {pattern} | Variant = {variant}")
     plt.tight_layout()
 
     out = Path(save_fig)

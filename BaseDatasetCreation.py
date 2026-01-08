@@ -3,10 +3,10 @@ import random
 import torchvision.utils as vutils
 from DataSetCreation.make_dataset import make_dataset
 
-shape = "rectangles"
-pattern = "color"
-size = "small"
-base_data_set_size = 600
+shape = "rectangles" #Options: rectangles or LvT (L's and T's)
+pattern = "color" #Options: color or texture
+size = "small" #Options: large or small
+base_data_set_size = 600 
 
 def load_full_dataset(shape= shape, pattern= pattern, size= size, variant="standard",
     batchsize=8, num_workers=2, stage="fit"):
@@ -17,7 +17,7 @@ def load_full_dataset(shape= shape, pattern= pattern, size= size, variant="stand
 
 def split_and_save_classification_dataset(dataloader, output_dir="BaseDataSet",
     pattern1_only=False, pattern1_label=0,
-    extra_metadata=None, max_images= base_data_set_size,
+    max_images= base_data_set_size,
     split_ratios=(0.7, 0.2, 0.1)):
     image_list = []
 
@@ -43,7 +43,6 @@ def split_and_save_classification_dataset(dataloader, output_dir="BaseDataSet",
 
     print(f"[INFO] Collected {len(image_list)} images, now splitting into train/val/test...")
 
-    # Shuffle and split
     random.shuffle(image_list)
     n_total = len(image_list)
     n_train = int(split_ratios[0] * n_total)
@@ -55,13 +54,11 @@ def split_and_save_classification_dataset(dataloader, output_dir="BaseDataSet",
         "test": image_list[n_train + n_val:]
     }
 
-    # Create folders
     for split in splits:
         for _, class_label, _ in splits[split]:
             class_dir = os.path.join(output_dir, split, f"class_{class_label}")
             os.makedirs(class_dir, exist_ok=True)
 
-    # Save images and metadata
     for split, items in splits.items():
         for img, class_label, filename in items:
             class_dir = os.path.join(output_dir, split, f"class_{class_label}")
