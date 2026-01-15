@@ -37,7 +37,6 @@ def train_model(
     model = YOLO(str(mp))
     train_results = model.train(data=str(dp), epochs=epochs, imgsz=imgsz)
 
-    # Find save_dir robustly
     save_dir = getattr(train_results, "save_dir", None)
     if save_dir is None and hasattr(model, "trainer"):
         save_dir = getattr(model.trainer, "save_dir", None)
@@ -74,7 +73,6 @@ def confusion_matrix_eval(model_path: str, test_dir: str, save_fig: str = "confu
 
     model = YOLO(str(mp))
 
-    # Folder-based class names (ground truth)
     class_names = sorted([d.name for d in td.iterdir() if d.is_dir() and not d.name.startswith(".")])
     if not class_names:
         raise RuntimeError(
@@ -82,7 +80,6 @@ def confusion_matrix_eval(model_path: str, test_dir: str, save_fig: str = "confu
             f"Expected: {test_dir}\\classA\\img.jpg"
         )
 
-    # Model class names/order
     model_names = model.names
     if isinstance(model_names, dict):
         model_class_names = [model_names[i] for i in sorted(model_names.keys())]
@@ -92,7 +89,6 @@ def confusion_matrix_eval(model_path: str, test_dir: str, save_fig: str = "confu
     print("Folder classes:", class_names)
     print("Model classes: ", model_class_names)
 
-    # Canonical mapping so '0' matches 'class_0'
     folder_index_by_name = {canon(name): i for i, name in enumerate(class_names)}
     model_to_folder = {mi: folder_index_by_name.get(canon(name)) for mi, name in enumerate(model_class_names)}
 
@@ -111,7 +107,6 @@ def confusion_matrix_eval(model_path: str, test_dir: str, save_fig: str = "confu
                 pred_folder_idx = model_to_folder.get(pred_model_idx)
 
                 if pred_folder_idx is None:
-                    # This would now only happen if model has a class name not present in folders
                     continue
 
                 total_used += 1
@@ -130,7 +125,6 @@ def confusion_matrix_eval(model_path: str, test_dir: str, save_fig: str = "confu
 
     cm = confusion_matrix(true_labels, pred_labels, labels=list(range(len(class_names))))
 
-    # Remove background if present
     if "background" in class_names:
         bg_i = class_names.index("background")
         keep = [i for i in range(len(class_names)) if i != bg_i]
@@ -154,7 +148,6 @@ def confusion_matrix_eval(model_path: str, test_dir: str, save_fig: str = "confu
 
 
 def main():
-    # Adjust if needed
     train_data = "BaseDataSet"
     test_data = "TestingDataSet"
 
